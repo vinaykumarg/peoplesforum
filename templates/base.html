@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Peoples Forum</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/"><img width="30pix" src="static/images.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="/postquestion">Post Question</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       {% if user %}
+          <button class="btn btn-primary dropdown-toggle" style="background-color: black" type="button" data-toggle="dropdown">{{user}}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="/logout">logout</a></li>
+    </ul>
+  </div>
+</div>
+
+       {% else %}
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="/signup"><span class="glyphicon glyphicon-signup"></span> Signup</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="/showqu">Data Structures</a></p>
+      <p><a href="/showos">Operating Systems</a></p>
+      <p><a href="/showjava">Java</a></p>
+      <p><a href="/showc">C</a></p>
+      <p><a href="/showweb">Web programming</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Queries on {{ subject }} </h1>
+     {% block content %}
+ {% for p in h %}
+ {% if p.subject == subject %}
+ <div class = "panel panel-default">
+  <div class = "panel-heading panel-heading-custom">{{ p.username }} posted: {{p.created.strftime('%dth %b %H:%M:%S')}}</div><br>
+  <div class = "panel-body">{{p.question }} <!-- <a href="/post/50/"> --></div>
+<form id="form2" name="form1"method='post' action="/like"> 
+  <input type="hidden" name="foo" value="{{ p.key().id() }}"> 
+  <button type="submit" class="btn btn-default glyphicon glyphicon-hand-up"></button>
+  {{p.likes}}
+  </form>
+  </div
+  <p><p></p></p>
+<form id="form2" name="form1"method='post' action="/poscomment">
+<textarea name='comment' id='comment'></textarea><br/>
+  <input type="hidden" name="key" value="{{ p.questionid }}">
+  <input type='submit' value='Reply' />  
+</form>
+<br>
+  {% for c in comment %}
+  {% if c.post == p.questionid %}
+  <div class="comment">
+                  <div class="date">
+   <strong>{{ c.author }}</strong> ({{ c.created_date }})                
+                  </div>                  
+                  <p>{{ c.text }}</p>
+                </div>
+  {% endif %}
+  {% endfor %} 
+  {% endif %}
+  {% endfor %}
+ {% endblock %}
+      <hr>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Copyright &copy; 2016-2100 by @Vinay,@shishir,@veda, @pavan,@saili.  All rights reserved.</p>
+</footer>
+
+</body>
+</html>

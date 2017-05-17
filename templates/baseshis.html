@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Peoplesforum</title>
+</head>
+
+<body>
+  <a href="/" class="main-title">
+    Peoples Forum
+  </a>
+
+  <div id="content">
+	{% if user and editurl %}
+	<div class="navbar-center">
+	<a href="/postquestion"> post question</a>
+	<!-- <a href={{ editurl }}>edit</a> -->
+	</div>
+	{% endif %}
+	<div class="navbar-right">
+	{% if user %}
+	<a href="/logout">logout</a> {{ user }}
+	{% else %}
+	<a href="/login">login</a>
+	<a href="/signup">signup</a>
+	{% endif %}
+	</div>
+	<br><br><br>
+​
+	<div class="navbar-left">
+	<a href={{editurl}}>DataStructures</a>
+	<div class="navbar-left">
+	<a href={{editurl}}>Java</a>
+	<div class="navbar-left">
+	<a href={{editurl}}>C</a>
+	<div class="navbar-left">
+	<a href={{editurl}}>Python</a>
+	<div class="navbar-left">
+	<a href={{editurl}}>Operating Systems</a>
+	<div class=error>{{ error }}</div>
+  {% block content %}
+  {% endblock %}
+  </div>
+</body>
+
+</html>
+

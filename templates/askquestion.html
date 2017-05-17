@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Peoples Forum</title>
+
+    <style type="text/css">
+	  body {
+	    font-family: sans-serif;
+	    width: 800px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .error {
+	    color: red
+	  }
+
+	  label {
+	    display: block;
+	    font-size: 20px;
+	  }
+
+	  input[type=text] {
+	    width: 400px;
+	    font-size: 20px;
+	    padding: 2px;
+	  }
+
+	  textarea {
+	    width: 400px;
+	    height: 200px;
+	    font-size: 17px;
+	  }
+
+	  input[type=submit] {
+	    font-size: 24px;
+	  }
+
+	  hr {
+	    margin: 20px auto;
+	  }
+	  
+	  .post {
+	    margin-top: 20px;
+	  }
+
+	  .post-subject {
+	    font-weight: bold;
+	    font-size: 20px;
+	  }
+
+	  .post-content {
+	    margin: 0;
+	    font-size: 17px;
+	  }
+    </style>
+
+  </head>
+
+  <body>
+  {% if user %}
+	<a href="/logout">logout</a> {{ user }}
+	{% else %}
+	<a href="/login">login</a>
+	<a href="/signup">signup</a>
+	{% endif %}
+	<form method="post">
+	<select name="subject">
+  <option value="Datastructures">Datastructures</option>
+  <option value="OperatingSystems">OperatingSystems</option>
+  <option value="Java">Java</option>
+  <option value="C">C</option>
+  <option value="Webprogramming">Webprogramming</option>
+</select>
+	 <input type="textarea" name="question" value="">
+	  <br>
+	  <br>
+	  <input type="submit">
+	</form>
+  </body>
+
+</html>

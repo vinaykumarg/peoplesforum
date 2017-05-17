@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Peoplesforum</title>
+</head>
+
+<body>
+  <a href="/" class="main-title">
+    Peoples Forum
+  </a>
+
+  <div id="content">
+	{% if user and editurl %}
+	<div class="navbar-center">
+	<a href="/postquestion"> post question</a>
+	<!-- <a href={{ editurl }}>edit</a> -->
+	</div>
+	{% endif %}
+	<div class="navbar-right">
+	{% if user %}
+	<a href="/logout">logout</a> {{ user }}
+	<a href="/showqu">show</a>
+	{% else %}
+	<a href="/login">login</a>
+	<a href="/signup">signup</a>
+	{% endif %}
+	</div>
+	<br><br><br>
+​
+	<div class="navbar-left">
+	<a href="/">DataStructures</a>
+	<div class="navbar-left">
+	<a href="/">Java</a>
+	<div class="navbar-left">
+	<a href="/">C</a>
+	<div class="navbar-left">
+	<a href="/">Python</a>
+	<div class="navbar-left">
+	<a href="/">Operating Systems</a>
+	<div class=error>{{ error }}</div>
+  {% block content %}
+  {% for p in h %}
+ <div class = "panel panel-default">
+ {p.created = p.created+f}
+	<div class = "panel-heading panel-heading-custom">{{ p.username }} posted: {{p.created.strftime('%dth %b %H:%M:%S')}}</div><br>
+	<div class = "panel-body">{{p.question }} <!-- <a href="/post/50/"> --></div>
+	</div>
+	<p><p></p></p>
+	{% endfor %}
+</body>
+  {% endblock %}
+  </div>
+
+
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Login into PeoplesForum</title>
+    <link rel="stylesheet" href="static/css/reset.css">
+    <link rel="stylesheet" href="static/css/style.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+  <div class="navbar-right">
+  {% if user %}
+  <a href="/logout">logout</a> {{ user }}
+  <a href="/showqu">show</a>
+  {% else %}
+<!--   <a href="/login">login</a>
+  <a href="/signup">signup</a> -->
+  {% endif %}
+  </div> 
+  <div class="login">
+  	<h1 class="login-heading">
+      <strong>Welcome.</strong> Please Sign in.</h1>
+      <form method="post">
+        <input type="textarea" name="username" class="input-txt" placeholder="Username" value={{username}}>
+		<b style="color: red">{{nameerror}}</b>
+		<input type="password" name="password" class="input-txt" placeholder="Password" value="">
+		<b style="color: red">{{passworderror}}</b>
+		<input type="password" name="verify" class="input-txt" placeholder="Verify Password" value="">
+		<b style="color: red">{{verifyerror}}</b>
+		<input type="textarea" name="email" class="input-txt" placeholder="Email (optional)" value="{{email}}">
+		<b style="color: red">{{emailerror}}</b>
+
+          <div class="login-footer">
+<!--              <a href="#" class="lnk">
+              I've forgotten something
+            </a> -->
+            <button type="submit" class="btn btn--right">sign in</button>
+          </div>
+      </form>      
+  </div>
+</div>
+    
+        <script src="static/js/index.js"></script>
+  </body>
+</html>
